@@ -23,12 +23,12 @@
         this.opens = 'right';
         this.cb = function() {
         };
-        this.format = '{MM}/{dd}/{yyyy}';
+        this.format = '{yyyy}-{MM}-{dd}';
         this.separator = ' - ';
         this.showWeekNumbers = false;
-        this.buttonClasses = ['btn-success'];
+        this.buttonClasses = ['btn-info'];
         this.locale = {
-            applyLabel: 'Apply',
+            applyLabel: 'Select',
             clearLabel: "Clear",
             fromLabel: 'From',
             toLabel: 'To',
@@ -83,7 +83,7 @@
                 '<label for="daterangepicker_start">' + this.locale.fromLabel + '</label>' +
                 '<input class="input-mini" type="text" name="daterangepicker_start" value="" disabled="disabled" />' +
                 '</div>' +
-                '<div class="daterangepicker_end_input" style="float: left; padding-left: 11px">' +
+                '<div class="daterangepicker_end_input" style="float: left; padding-left: 0px; padding-bottom: 10px">' +
                 '<label for="daterangepicker_end">' + this.locale.toLabel + '</label>' +
                 '<input class="input-mini" type="text" name="daterangepicker_end" value="" disabled="disabled" />' +
                 '</div>' +
