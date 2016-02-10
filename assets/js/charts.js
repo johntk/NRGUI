@@ -19,7 +19,7 @@
 
             yAxis: {
                 title: {
-                    text: 'Request per minute in K'
+                    text: 'Request per minute'
                 }
             },
 

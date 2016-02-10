@@ -4,7 +4,7 @@
 
 #chart {
     margin-right: 10px;
-    
+    padding-left:10px;
 }
 
 #leftChartSelections {
@@ -21,6 +21,7 @@
     #environmentGroup h3 {
         margin-top: 5px;
         margin-bottom: 10px;
+        
     }
 
 #applicationGroup {
