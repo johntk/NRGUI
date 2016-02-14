@@ -1,23 +1,36 @@
 ﻿$(function getDate() {
 
     // Set the default dates
-    var startDate = Date.create(), // 1 days ago
-	endDate = Date.create(); // today
+    var startDate = moment(), // 1 days ago
+	endDate = moment(); // today
 
     var range = $('#range');
 
+   
     // Show the dates in the range input
-    range.val(startDate.format('{yyyy}-{MM}-{dd}') + ' - '
-			+ endDate.format('{yyyy}-{MM}-{dd}'));
+    //range.val(startDate.format('yyyy-dd-mm') + ' - '
+	//		+ endDate.format('yyyy-dd-mm'));
+
+    console.log("Start date " + startDate);
 
     range.daterangepicker({
+        timePicker: true,
+        timePicker24Hour: true,
+        showDropdowns: true,
+        linkedCalendars: false,
         startDate: startDate,
+        sideBySide: true,
         endDate: endDate,
-        ranges: {
-            'Today': ['today', Date.create().addDays(1)],
-            'Yesterday': ['yesterday', 'yesterday'],
-            'Last 7 Days': [Date.create().addDays(-6), 'today'],
-            'Last 30 Days': [Date.create().addDays(-29), 'today']
-        }
+        locale: {
+            format: 'YYYY-MM-DD hh:mm'
+        },
+        //ranges: {
+        //    'Today': [moment(), moment()],
+        //    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        //    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        //    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        //    'This Month': [moment().startOf('month'), moment().endOf('month')],
+        //    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        //}
     });
 });

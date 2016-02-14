@@ -1,4 +1,5 @@
 ﻿function defaultChart(data) {
+    console.log(data);
     if ((data.indexOf("No record found") > -1)
                      || (data.indexOf("Date must be selected.") > -1)) {
         $('#msg').html('<span style="color:red;">' + data + '</span>');
@@ -14,7 +15,7 @@
             },
 
             xAxis: {
-                type: 'datetime'
+                type: 'datetime',
             },
 
             yAxis: {

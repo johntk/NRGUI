@@ -7,9 +7,10 @@
 
     <title>NewRelic Stats</title>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -22,11 +23,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+
     <!-- Highchart -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/highcharts-more.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="assets/js/themes/dark-unica.js"></script>
+    <script src="http://code.highcharts.com/themes/dark-unica.js"></script>
+
+
+    <!-- DateRangePicker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/custom.css" />
+
+
+    <!-- Custom Javascript -->
+    <script type='text/javascript' src='/assets/js/charts.js'></script>
+    <script type='text/javascript' src='/assets/js/chartLoad.js'></script>
+    <script type='text/javascript' src='/assets/js/dateRange.js'></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,28 +54,9 @@
     <script src = "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/assets/css/custom.css" />
-    <link rel="stylesheet" href="/assets/css/daterangepicker.css">
-
-    <!-- Javascript -->
-    <script type='text/javascript' src="/assets/js/jquery-ui-1.10.3-custom.min.js"></script>
-    <script type='text/javascript' src='/assets/js/jquery-migrate-1.2.1.js'></script>
-    <script type='text/javascript' src='/assets/js/sugar.min.js'></script>
-    <script type='text/javascript' src='/assets/js/charts.js'></script>
-    <script type='text/javascript' src='/assets/js/chartLoad.js'></script>
-    <script type='text/javascript' src='/assets/js/daterangepicker.js'></script>
-    <script type='text/javascript' src='/assets/js/dateRange.js'></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
-
 </head>
 <body>
-   
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -72,16 +72,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Applications</a></li>
                     <li><a href="#">Servers</a></li>
-                    <li><a href="#">Plugins</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Calculations <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Max</a></li>
-                            <li><a href="#">Mean</a></li>
-                            <li><a href="#">Min</a></li>
-                            <li><a href="#">Interpolation</a></li>
-                        </ul>
-                    </li>
+                    <!--<li><a href="#">Plugins</a></li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right"></ul>
             </div>
@@ -145,26 +136,53 @@
                 </div>
                 <div id="datePicker">
                     <h3>Select Date</h3>
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="input-prepend">
-                                <span class="add-on"><i class="icon-calendar"></i></span><input type="text" name="range" id="range" />
-                            </div>
-                        </fieldset>
-                    </form>
+                    <div class="inner-addon right-addon">
+                        <input type="text" name="range" id="range" class="form-control" />
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar">
+                        </i>
+                    </div>
                 </div>
                 <button onclick="getChart()" type="submit" class="btn btn-default" id="refreshChart">Refresh</button>
             </div>
         </div>
         <div class="col-lg-8">
             <div id="chart"></div>
+            <div id="calc" class="col-md-10 col-md-offset-10">
+                <form class="form">
+                    <div class="btn-group btn-group-justified " data-toggle="buttons" name="chartSelect">
+                        <label class="btn btn-info">
+                            <input name="chart" value="" type="radio">All
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="chart" value="total" type="radio">Total
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="chart" value="max" type="radio">Max
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="chart" value="mean" type="radio">Mean
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="chart" value="min" type="radio">Min
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="chart" value="extrapolation" type="radio">Extrapolation
+                        </label>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 </html>
 
 <script type="text/javascript">
-        $(document).ready(function () {
-            getChart();
-        });
+    $(document).ready(function () {
+        getChart();
+    });
+
+    $('[name=chart]').change(function () {
+        getChart();
+    });
+
 </script>
