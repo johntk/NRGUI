@@ -22,7 +22,7 @@
         sideBySide: true,
         endDate: endDate,
         locale: {
-            format: 'YYYY-MM-DD hh:mm'
+            format: 'YYYY-MM-DD HH:mm'
         },
         //ranges: {
         //    'Today': [moment(), moment()],
