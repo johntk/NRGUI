@@ -1,31 +1,67 @@
-﻿function defaultChart(data) {
-    console.log(data);
-    if ((data.indexOf("No record found") > -1) || (data.indexOf("Date must be selected.") > -1)) {
-        $('#msg').html('<span style="color:red;">' + data + '</span>');
-    } else {
-        $('#msg').empty();
-        $('#chart').highcharts({
-            chart: {
-                zoomType: 'x'
-            },
+﻿$("document").ready(function () {
+    $('[name=hide]').change(function () {
+        if ($(this).is(':checked')) {
+            hideAll();
+            $('#all span').text('Show');
+        }
+        else {
+            showAll();
+            $('#all span').text('Hide');
+        }
+    });
 
-            title: {
-                text: 'Application Throughput'
-            },
 
-            xAxis: {
-                 type: 'datetime', dateTimeLabelFormats: { hour: '%H:%M:%S', day: '<b>%e\/%b\/%y</>' }, title: { text: 'Date' } 
-            },
+    $('[name=total]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(1);
+        }
+        else {
+            hideMin(1);
+        }
+    });
 
-            yAxis: { title: { text: 'Value' }, min: 0 },
+    $('[name=min]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(2);
+        }
+        else {
+            hideMin(2);
+        }
+    });
 
-            tooltip: { headerFormat: '<b>{series.name}</b><br>', pointFormat: 'Date: {point.x:%e\/%b\/%y %H:%M:%S}<br>Value: {point.y}' },
+    $('[name=max]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(3);
+        }
+        else {
+            hideMin(3);
+        }
+    });
 
-            legend: {
-                enabled: false
-            },
-           
-            series: data
-        });
-    }
-}
+    $('[name=mean]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(4);
+        }
+        else {
+            hideMin(4);
+        }
+    });
+
+    $('[name=extrapo]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(0);
+        }
+        else {
+            hideMin(0);
+        }
+    });
+
+    $('[name=all]').change(function () {
+        if ($(this).is(':checked')) {
+            showMin(0);
+        }
+        else {
+            hideMin(0);
+        }
+    });
+});

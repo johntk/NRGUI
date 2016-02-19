@@ -45,6 +45,7 @@
     <script type='text/javascript' src='/assets/js/charts.js'></script>
     <script type='text/javascript' src='/assets/js/chartLoad.js'></script>
     <script type='text/javascript' src='/assets/js/dateRange.js'></script>
+    <script type='text/javascript' src='/assets/js/unchecked.js'></script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -142,7 +143,7 @@
                         </i>
                     </div>
                 </div>
-                <button onclick="getChart()" type="submit" class="btn btn-default" id="refreshChart">Refresh</button>
+                <button onclick="getChart(); uncheck();" type="submit" class="btn btn-default" id="refreshChart">Request</button>
             </div>
         </div>
         <div class="col-lg-8">
@@ -150,23 +151,26 @@
             <div id="calc" class="col-md-10 col-md-offset-10">
                 <form class="form">
                     <div class="btn-group btn-group-justified " data-toggle="buttons" name="chartSelect">
-                        <label class="btn btn-info">
-                            <input name="chart" value="" type="radio">All
+                        <label class="btn btn-info" id ="hide">
+                            <input name="hide" type="checkbox" ><span>Hide</span>
                         </label>
                         <label class="btn btn-info">
-                            <input name="chart" value="total" type="radio">Total
+                            <input name="total" id="total" type="checkbox">Total
                         </label>
                         <label class="btn btn-info">
-                            <input name="chart" value="max" type="radio">Max
+                            <input name="max" id="max" type="checkbox">Max
                         </label>
                         <label class="btn btn-info">
-                            <input name="chart" value="mean" type="radio">Mean
+                            <input name="mean" id="mean" type="checkbox">Mean
                         </label>
                         <label class="btn btn-info">
-                            <input name="chart" value="min" type="radio">Min
+                            <input name="min" id="min" type="checkbox">Min
                         </label>
                         <label class="btn btn-info">
-                            <input name="chart" value="extrapolation" type="radio">Extrapo
+                            <input name="extrapo" id="extrapolation" type="checkbox">Extrapo
+                        </label>
+                        <label class="btn btn-info">
+                            <input name="all" id="all" type="checkbox">All
                         </label>
                     </div>
                 </form>
@@ -177,12 +181,8 @@
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        //getChart();
-    });
 
-    $('[name=chart]').change(function () {
-        //getChart();
-    });
-
+    uncheck = function () {
+        $("div[data-toggle='buttons'] input[type='checkbox']:checked").removeAttr("checked");
+    };
 </script>
