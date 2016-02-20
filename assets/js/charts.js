@@ -2,17 +2,18 @@
     $('[name=hide]').change(function () {
         if ($(this).is(':checked')) {
             hideAll();
-            $('#all span').text('Show');
+            $('#hide span').text('Show');
         }
         else {
             showAll();
-            $('#all span').text('Hide');
+            $('#hide span').text('Hide');
         }
     });
 
 
     $('[name=total]').change(function () {
         if ($(this).is(':checked')) {
+            hideAll();
             showMin(1);
         }
         else {

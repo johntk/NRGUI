@@ -83,7 +83,6 @@ function showMin(i) {
 
     chart.series[i].setVisible(true, false);
     chart.redraw();
-    console.log(chart);
 }
 
 function hideMin(i) {
