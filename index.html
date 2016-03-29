@@ -39,12 +39,15 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap-multiselect.css" />
 
 
     <!-- Custom Javascript -->
     <script type='text/javascript' src='/assets/js/charts.js'></script>
     <script type='text/javascript' src='/assets/js/chartLoad.js'></script>
     <script type='text/javascript' src='/assets/js/dateRange.js'></script>
+    <script type='text/javascript' src='/assets/js/populate.js'></script>
+    <script type='text/javascript' src='/assets/js/bootstrap-multiselect.js'></script>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -71,7 +74,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Applications</a></li>
-                    <li><a href="#">Servers</a></li>
+                    <!--<li><a href="#">Servers</a></li>-->
                     <!--<li><a href="#">Plugins</a></li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right"></ul>
@@ -83,55 +86,14 @@
             <div id="leftChartSelections">
                 <div id="environmentGroup">
                     <h3>Select Environment</h3>
-                    <form class="form">
-                        <div class="btn-group btn-group-justified" data-toggle="buttons" name="environmentSelect">
-                            <label class="btn btn-default">
-                                <input name="env" value="A3" type="radio">A3
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="G3" type="radio">G3
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="J3" type="radio">J3
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="BHT6" type="radio">BHT6
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="CA1" type="radio">CA1
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="LLC1" type="radio">LLC1
-                            </label>
-                            <label class="btn btn-default">
-                                <input name="env" value="PC1" type="radio">PC1
-                            </label>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <select id="environmentSelect" name="environmentSelect" multiple="multiple"></select>
+                    </div>
                 </div>
                 <div id="applicationGroup">
                     <h3>Select Application</h3>
                     <div class="form-group">
-                        <select class="selectpicker" name="applicationSelect">
-                            <option value="actwebui">actwebui</option>
-                            <option value="commwebui">commwebui</option>
-                            <option value="connwebresources">connwebresources</option>
-                            <option value="contactssrvc">contactssrvc</option>
-                            <option value="docs">docs</option>
-                            <option value="files">files</option>
-                            <option value="homepage">homepage</option>
-                            <option value="opensocial">opensocial</option>
-                            <option value="manage">manage</option>
-                            <option value="navigation">navigation</option>
-                            <option value="newsaggrsrvc">newsaggrsrvc</option>
-                            <option value="php">php</option>
-                            <option value="profiles">profiles</option>
-                            <option value="search">search</option>
-                            <option value="rtc3web">rtc3web</option>
-                            <option value="stproxysrvlt">stproxysrvlt</option>
-                            <option value="wdpbss">wdpbss</option>
-                            <option value="wikis">wikis</option>
-                        </select>
+                        <select id="applicationSelect" name="applicationSelect" multiple="multiple"></select>
                     </div>
                 </div>
                 <div id="datePicker">
@@ -151,7 +113,7 @@
                 <form class="form">
                     <div class="btn-group btn-group-justified " data-toggle="buttons" name="chartSelect">
                         <label class="btn btn-info" id="hide">
-                            <input name="hide" type="checkbox" ><span>Hide</span>
+                            <input name="hide" type="checkbox"><span>Hide</span>
                         </label>
                         <label class="btn btn-info">
                             <input name="total" id="total" type="checkbox">Total
@@ -184,4 +146,6 @@
     uncheck = function () {
         $("div[data-toggle='buttons'] input[type='checkbox']:checked").removeAttr("checked");
     };
+    populate();
+
 </script>

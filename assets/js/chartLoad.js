@@ -4,7 +4,8 @@ function getChart() {
     var startDate = $('#range').val().slice(0, 10) + 'T' + $('#range').val().slice(11, 16) + ':00+00:00';
     var endDate = $('#range').val().slice(19, 29) + 'T' + $('#range').val().slice(30, 38) + ':00+00:00';
     var appName = $('select[name=applicationSelect]').val();
-    var envName = $('input[name=env]:checked').val();
+    var envName = $('select[name=environmentSelect]').val();
+
     //var chartType = $('input[name=chart]:checked').val();
     
     console.log(appName);
@@ -35,7 +36,7 @@ function getChart() {
         tooltip: { headerFormat: '<b>{series.name}</b><br>', pointFormat: 'Date: {point.x:%e\/%b\/%y %H:%M:%S}<br>Value: {point.y}' },
 
         legend: {
-            enabled: false
+            enabled: true
         },
 
         series: []
@@ -52,7 +53,8 @@ function getChart() {
         }
         // Otherwise, issue an AJAX request
         $.ajax({
-            url: 'http://johnkiernan.ie:8083/IBMServlet_war/operations.PreProcessor',
+            url: 'http://localhost:8080/operations.PreProcessor',
+            //url: 'http://johnkiernan.ie:8083/IBMServlet_war/operations.PreProcessor',
             crossDomain: true,
             async: true,
             type: "GET",
@@ -60,16 +62,20 @@ function getChart() {
             data: {
                 start: startDate,
                 end: endDate,
-                env: envName,
-                app: appName
+                env: JSON.stringify(envName),
+                app: JSON.stringify(appName),
+                type: "Rugby"
             },
             success: function (json) {
                 console.log(json);
-                options.series[0] = json[0];
-                options.series[1] = json[1];
-                options.series[2] = json[2];
-                options.series[3] = json[3];
-                options.series[4] = json[4];
+                for (var i = 0; i < json.length; i++) {
+                    options.series[i] = json[i];
+                }
+                //options.series[0] = json[0];
+                //options.series[1] = json[1];
+                //options.series[2] = json[2];
+                //options.series[3] = json[3];
+                //options.series[4] = json[4];
                 chart = new Highcharts.Chart(options); 
             },
             error: function (xhr, status, error) {
