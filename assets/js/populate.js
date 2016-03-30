@@ -13,7 +13,7 @@
         traditional: true,
         dataType: "json",
         data: {
-            type: "list"
+            arg: "list"
         },
         success: function (json) {
             console.log(json);

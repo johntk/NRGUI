@@ -64,12 +64,14 @@ function getChart() {
                 end: endDate,
                 env: JSON.stringify(envName),
                 app: JSON.stringify(appName),
-                type: "Rugby"
+                arg: "chart"
             },
             success: function (json) {
                 console.log(json);
+                //console.log(json.length);
                 for (var i = 0; i < json.length; i++) {
                     options.series[i] = json[i];
+                  
                 }
                 //options.series[0] = json[0];
                 //options.series[1] = json[1];
