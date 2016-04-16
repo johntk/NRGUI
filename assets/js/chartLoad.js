@@ -5,21 +5,50 @@ function getChart() {
     var endDate = $('#range').val().slice(19, 29) + 'T' + $('#range').val().slice(30, 38) + ':00+00:00';
     var appName = $('select[name=applicationSelect]').val();
     var envName = $('select[name=environmentSelect]').val();
-
-    //var chartType = $('input[name=chart]:checked').val();
+    var throughputName;
+    var minName;
+    var maxName;
+    var meanName;
+    var totalName;
+    var extrapName;
     
+    if ($('[name=checkbox-h-2a]').is(':checked')) {
+        throughputName = "throughput";
+    }
+    if ($('[name=checkbox-h-2b]').is(':checked')) {
+        meanName = "mean";
+    }
+    if ($('[name=checkbox-h-2c]').is(':checked')) {
+        maxName = "max";
+    }
+    if ($('[name=checkbox-h-2d]').is(':checked')) {
+        extrapName = "extrap";
+    }
+    if ($('[name=checkbox-h-2e]').is(':checked')) {
+        totalName = "total";
+    }
+    if ($('[name=checkbox-h-2f]').is(':checked')) {
+        minName = "min";
+    }
+
     console.log(appName);
     console.log(envName);
     console.log(startDate);
     console.log(endDate);
-    //console.log(chartType);
-
+    Highcharts.setOptions({
+        global: {
+            useUTC: false,
+        }
+    });
     var options = {
        
         chart: {
             renderTo: 'chart',
+            width: null,
+            height: 500,
             zoomType: 'x'
         },
+       
 
         title: {
             text: 'Application Throughput'
@@ -36,6 +65,11 @@ function getChart() {
         tooltip: { headerFormat: '<b>{series.name}</b><br>', pointFormat: 'Date: {point.x:%e\/%b\/%y %H:%M:%S}<br>Value: {point.y}' },
 
         legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -10,
+            y: 50,
             enabled: true
         },
 
@@ -64,21 +98,21 @@ function getChart() {
                 end: endDate,
                 env: JSON.stringify(envName),
                 app: JSON.stringify(appName),
+                throughput: JSON.stringify(throughputName),
+                min: JSON.stringify(minName),
+                max: JSON.stringify(maxName),
+                mean: JSON.stringify(meanName),
+                total: JSON.stringify(totalName),
+                extrap: JSON.stringify(extrapName),
                 arg: "chart"
             },
             success: function (json) {
                 console.log(json);
-                //console.log(json.length);
                 for (var i = 0; i < json.length; i++) {
                     options.series[i] = json[i];
                   
                 }
-                //options.series[0] = json[0];
-                //options.series[1] = json[1];
-                //options.series[2] = json[2];
-                //options.series[3] = json[3];
-                //options.series[4] = json[4];
-                chart = new Highcharts.Chart(options); 
+                chart = new Highcharts.Chart(options);
             },
             error: function (xhr, status, error) {
                 alert(status + " " + error);
@@ -87,17 +121,7 @@ function getChart() {
         })
     }
 };
-function showMin(i) {
 
-    chart.series[i].setVisible(true, false);
-    chart.redraw();
-}
-
-function hideMin(i) {
-
-    chart.series[i].setVisible(false, false);
-    chart.redraw();
-}
 function showAll() {
     for (var i = 0, len = chart.series.length; i < len; i++) {
         chart.series[i].setVisible(true, false);

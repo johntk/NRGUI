@@ -40,6 +40,10 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css" />
     <link rel="stylesheet" href="/assets/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="/assets/css/awesome-bootstrap-checkbox.css" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
     <!-- Custom Javascript -->
@@ -48,6 +52,7 @@
     <script type='text/javascript' src='/assets/js/dateRange.js'></script>
     <script type='text/javascript' src='/assets/js/populate.js'></script>
     <script type='text/javascript' src='/assets/js/bootstrap-multiselect.js'></script>
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -82,56 +87,75 @@
         </div>
     </nav>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-3">
             <div id="leftChartSelections">
                 <div id="environmentGroup">
-                    <h3>Select Environment</h3>
+                    <h3>Environment</h3>
                     <div class="form-group">
                         <select id="environmentSelect" name="environmentSelect" multiple="multiple"></select>
                     </div>
                 </div>
                 <div id="applicationGroup">
-                    <h3>Select Application</h3>
+                    <h3>Application</h3>
                     <div class="form-group">
                         <select id="applicationSelect" name="applicationSelect" multiple="multiple"></select>
                     </div>
                 </div>
                 <div id="datePicker">
-                    <h3>Select Date</h3>
+                    <h3>Date</h3>
                     <div class="inner-addon right-addon">
                         <input type="text" name="range" id="range" class="form-control" />
                         <i class="glyphicon glyphicon-calendar fa fa-calendar">
                         </i>
                     </div>
                 </div>
-                <button onclick="getChart(); uncheck();" type="submit" class="btn btn-default" id="refreshChart">Request</button>
+                <div id="calcPicker">
+                    <h3>Calculations</h3>
+                    <div class="checkbox checkbox-info">
+                        <div class="row">
+                            <div class="col-md-3" id="leftCheck">
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2a" id="checkbox-h-2a">
+                                    <label for="checkbox-h-2a">Throughput</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2b" id="checkbox-h-2b">
+                                    <label for="checkbox-h-2b">Mean</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2c" id="checkbox-h-2c">
+                                    <label for="checkbox-h-2c">Max</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3" id="rightCheck">
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2d" id="checkbox-h-2d">
+                                    <label for="checkbox-h-2d">Extrapolate</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2e" id="checkbox-h-2e">
+                                    <label for="checkbox-h-2e">Totals</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="checkbox-h-2f" id="checkbox-h-2f">
+                                    <label for="checkbox-h-2f">Min</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="requestBtn">
+                    <button onclick="getChart(); uncheck();" type="submit" class="btn btn-default" id="refreshChart">Request</button>
+                </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-9">
             <div id="chart"></div>
-            <div id="calc" class="col-md-10 col-md-offset-10">
+            <div id="calc" class="col-md-12 col-md-offset-12">
                 <form class="form">
                     <div class="btn-group btn-group-justified " data-toggle="buttons" name="chartSelect">
                         <label class="btn btn-info" id="hide">
                             <input name="hide" type="checkbox"><span>Hide</span>
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="total" id="total" type="checkbox">Total
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="max" id="max" type="checkbox">Max
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="mean" id="mean" type="checkbox">Mean
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="min" id="min" type="checkbox">Min
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="extrapo" id="extrapolation" type="checkbox">Extrapo
-                        </label>
-                        <label class="btn btn-info">
-                            <input name="all" id="all" type="checkbox">All
                         </label>
                     </div>
                 </form>
@@ -147,5 +171,6 @@
         $("div[data-toggle='buttons'] input[type='checkbox']:checked").removeAttr("checked");
     };
     populate();
+    getChart();
 
 </script>
