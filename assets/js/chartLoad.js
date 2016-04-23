@@ -11,6 +11,7 @@ function getChart() {
     var meanName;
     var totalName;
     var extrapName;
+    var extrapName2;
     
     if ($('[name=checkbox-h-2a]').is(':checked')) {
         throughputName = "throughput";
@@ -29,6 +30,9 @@ function getChart() {
     }
     if ($('[name=checkbox-h-2f]').is(':checked')) {
         minName = "min";
+    }
+    if ($('[name=checkbox-h-2g]').is(':checked')) {
+        extrapName2 = "extrap2";
     }
 
     console.log(appName);
@@ -104,6 +108,7 @@ function getChart() {
                 mean: JSON.stringify(meanName),
                 total: JSON.stringify(totalName),
                 extrap: JSON.stringify(extrapName),
+                extrap2: JSON.stringify(extrapName2),
                 arg: "chart"
             },
             success: function (json) {
