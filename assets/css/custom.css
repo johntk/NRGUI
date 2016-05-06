@@ -46,11 +46,10 @@
      /*margin-bottom: 5px;*/
 }
 
-    #calcPicker h3 {
+    #calcPicker h3 h4{
         margin-top: 40px;
         margin-bottom: 10px;
     }
-    
 
 .inner-addon {
     position: relative;
@@ -110,4 +109,20 @@
 #requestBtn {
      margin-top: 0px;
      padding-top: 0px;
+}
+.radio-inline {
+  padding-left: 20px  !important;
+}
+
+.progress {
+    display: block;
+    text-align: center;
+    width: 0;
+    height: 3px;
+    background: red;
+    transition: width .3s;
+}
+.progress.hide {
+    opacity: 0;
+    transition: opacity 1.3s;
 }

@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 
-
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -23,37 +22,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-
     <!-- Highchart -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/highcharts-more.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="http://code.highcharts.com/themes/dark-unica.js"></script>
 
-
     <!-- DateRangePicker -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
+    <!-- Bootstrap-Multiselect -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap-multiselect.css" />
+    <script type='text/javascript' src='/assets/js/bootstrap-multiselect.js'></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css" />
-    <link rel="stylesheet" href="/assets/css/bootstrap-multiselect.css" />
     <link rel="stylesheet" href="/assets/css/awesome-bootstrap-checkbox.css" />
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
 
     <!-- Custom Javascript -->
     <script type='text/javascript' src='/assets/js/charts.js'></script>
     <script type='text/javascript' src='/assets/js/chartLoad.js'></script>
     <script type='text/javascript' src='/assets/js/dateRange.js'></script>
     <script type='text/javascript' src='/assets/js/populate.js'></script>
-    <script type='text/javascript' src='/assets/js/bootstrap-multiselect.js'></script>
-
-
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +61,6 @@
 
 </head>
 <body>
-
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -79,8 +75,6 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Applications</a></li>
-                    <!--<li><a href="#">Servers</a></li>-->
-                    <!--<li><a href="#">Plugins</a></li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right"></ul>
             </div>
@@ -103,6 +97,7 @@
                 </div>
                 <div id="datePicker">
                     <h3>Date</h3>
+                    <h6>(Select a future date to extrapolate)</h6>
                     <div class="inner-addon right-addon">
                         <input type="text" name="range" id="range" class="form-control" />
                         <i class="glyphicon glyphicon-calendar fa fa-calendar">
@@ -126,15 +121,11 @@
                                     <input type="checkbox" name="checkbox-h-2c" id="checkbox-h-2c">
                                     <label for="checkbox-h-2c">Max</label>
                                 </div>
-                                <div class="checkbox">
-                                    <input type="checkbox" name="checkbox-h-2g" id="checkbox-h-2g">
-                                    <label for="checkbox-h-2g">Extrapolate2</label>
-                                </div>
                             </div>
                             <div class="col-md-3" id="rightCheck">
                                 <div class="checkbox">
                                     <input type="checkbox" name="checkbox-h-2d" id="checkbox-h-2d">
-                                    <label for="checkbox-h-2d">Extrapolate1</label>
+                                    <label for="checkbox-h-2d">Extrapolation</label>
                                 </div>
                                 <div class="checkbox">
                                     <input type="checkbox" name="checkbox-h-2e" id="checkbox-h-2e">
@@ -144,14 +135,30 @@
                                     <input type="checkbox" name="checkbox-h-2f" id="checkbox-h-2f">
                                     <label for="checkbox-h-2f">Min</label>
                                 </div>
-                                
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="checkbox checkbox-info">
+                            <div class="col-md-3" id="leftCheck">
+                                <div class="checkbox ">
+                                    <input type="checkbox" name="checkbox-h-2g" id="checkbox-h-2g">
+                                    <label for="checkbox-h-2g">ExtrapGrade:</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" id="leftCheck">
+                            <label class="radio-inline"></label>
+                            <label class="radio-inline"><input type="radio" name="optradio" id="r1" value="2">2</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" id="r2" value="3">3</label>
+                            <label class="radio-inline"><input type="radio" name="optradio" id="r3" value="4">4</label>
                         </div>
                     </div>
                 </div>
                 <div id="requestBtn">
-                    <button onclick="getChart(); uncheck();" type="submit" class="btn btn-default" id="refreshChart">Request</button>
+                    <button onclick="getChart(0); uncheck();" type="submit" class="btn btn-default" id="refreshChart">Request</button>
                 </div>
+                <div class="progress"></div>
             </div>
         </div>
         <div class="col-md-9">
@@ -169,13 +176,18 @@
     </div>
 </body>
 </html>
-
 <script type="text/javascript">
-
     uncheck = function () {
         $("div[data-toggle='buttons'] input[type='checkbox']:checked").removeAttr("checked");
     };
     populate();
-    getChart();
+    getChart(1);
 
+    $('#checkbox-h-2g').change(function () {
+        if (this.checked) {
+            $('#r1').prop('checked', true);
+        } else {
+            $('#r1 , #r2, #r3').prop('checked', false);
+        }
+    });
 </script>

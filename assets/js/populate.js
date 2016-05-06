@@ -5,8 +5,9 @@
     var envSelect = $('#environmentSelect');
     // Issue an AJAX request
     $.ajax({
-        url: 'http://localhost:8080/operations.PreProcessor',
-        //url: 'http://johnkiernan.ie:8083/IBMServlet_war/operations.PreProcessor',
+        
+        //url: 'http://localhost:8080/operations.PreProcessor',
+        url: 'http://johnkiernan.ie:8083/IBMServlet_war/operations.PreProcessor',
         crossDomain: true,
         async: true,
         type: "GET",

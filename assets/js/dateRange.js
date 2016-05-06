@@ -24,13 +24,19 @@
         locale: {
             format: 'YYYY-MM-DD HH:mm'
         },
-        //ranges: {
-        //    'Today': [moment(), moment()],
-        //    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        //    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        //    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        //    'This Month': [moment().startOf('month'), moment().endOf('month')],
-        //    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        //}
+        ranges: {
+            'Today': [moment().startOf('day'), moment()],
+            'Yesterday': [moment().subtract(1, 'days').startOf('day'), moment().startOf('day')],
+            'Last 7 Days': [moment().subtract(6, 'days').startOf('day'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days').startOf('day'), moment()],
+            'This Month': [moment().startOf('month').startOf('day'), moment().endOf('month').endOf('day')],
+            'Last Week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week').endOf('day')],
+            'Two Weeks ago': [moment().subtract(2, 'weeks').startOf('week'), moment().subtract(2, 'weeks').endOf('week').endOf('day')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month').endOf('day')],
+            'One hour (extrap)': [moment().startOf('day'), moment().add(1, 'hour')],
+            'Four hours (extrap)': [moment().startOf('day'), moment().add(4, 'hour')],
+            'Tomorrow (extrap)': [moment().subtract(1, 'days'), moment().add(1, 'days')],
+            'Next Week (extrap)': [moment().subtract(6, 'days').startOf('day'), moment().add(7, 'days')],
+        }
     });
 });
